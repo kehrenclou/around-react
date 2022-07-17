@@ -7,6 +7,7 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
 import "../blocks/modal.css";
 
 /* ---------------------------- function App(){} ---------------------------- */
@@ -86,19 +87,8 @@ function App() {
         <span className="modal__error" id="input-place-link-error"></span>
       </PopupWithForm>
 
-      
-      <div className="modal modal_type_image" id="modal-image-popup">
-        <div className="modal__content modal__content_type_image">
-          <button
-            aria-label="Close Image Button"
-            type="button"
-            className="button modal__button-close"
-            id="modal-image-close-button"
-          ></button>
-          <img src="#" alt="#" className="modal__image" />
-          <p className="modal__caption"></p>
-        </div>
-      </div>
+
+     <ImagePopup></ImagePopup>
 
       <template id="card-template" className="card-template">
         <li className="cards__item">
