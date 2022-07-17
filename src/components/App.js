@@ -1,4 +1,5 @@
 /* --------------------------------- imports -------------------------------- */
+import React from "react";
 import logo from "../logo.svg";
 import "../index.css";
 import HeaderLogo from "../images/HeaderLogo.svg";
@@ -13,12 +14,37 @@ import "../blocks/modal.css";
 /* ---------------------------- function App(){} ---------------------------- */
 
 function App() {
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
+    React.useState(false);
+  const [isAddPlacePopupOpen, setaddPlacePopupOpen] = React.useState(false);
+
+  function handleEditAvatarClick() {
+    console.log("edit profile clicked");
+    setEditAvatarPopupOpen(true);
+  }
+
+  function handleEditProfileClick() {
+    console.log("edit profile clicked");
+    setEditProfilePopupOpen(true);
+  }
+
+  function handleAddPlaceClick() {
+    console.log("addplace clicked");
+    setaddPlacePopupOpen(true);
+  }
+
   return (
     <div className="page">
       <Header />
-      <Main />
+      <Main
+        onEditAvatarClick={handleEditAvatarClick}
+        onEditProfileClick={handleEditProfileClick}
+        onAddPlaceClick={handleAddPlaceClick}
+      ></Main>
       <Footer />
       <PopupWithForm
+        isOpen={isEditAvatarPopupOpen}
         name="change-avatar"
         title="Change profile picture"
         submitText="Save"
@@ -33,7 +59,12 @@ function App() {
         />
         <span className="modal__error" id="input-avatar-link-error"></span>
       </PopupWithForm>
-      <PopupWithForm name="edit-profile" title="Edit profile" submitText="Save">
+      <PopupWithForm
+        isOpen={isEditProfilePopupOpen}
+        name="edit-profile"
+        title="Edit profile"
+        submitText="Save"
+      >
         <input
           name="input-name"
           placeholder="Name"
@@ -64,7 +95,7 @@ function App() {
         submitText="Yes"
       ></PopupWithForm>
 
-      <PopupWithForm name="add-place" title="New Place" submitText="Save">
+      <PopupWithForm  isOpen={isAddPlacePopupOpen} name="add-place" title="New Place" submitText="Save">
         <input
           name="input-place-title"
           placeholder="Title"
@@ -87,8 +118,7 @@ function App() {
         <span className="modal__error" id="input-place-link-error"></span>
       </PopupWithForm>
 
-
-     <ImagePopup></ImagePopup>
+      <ImagePopup></ImagePopup>
 
       <template id="card-template" className="card-template">
         <li className="cards__item">

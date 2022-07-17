@@ -1,34 +1,22 @@
 import flash from "../images/flash.png";
 import Button from "./Button";
+import PopupWithForm from "./PopupWithForm";
+import App from "./App";
 import "../blocks/profile.css";
 import "../blocks/button.css";
 import "../blocks/modal.css";
 
-const handleEditAvatarclick = () => {
-  console.log("edit profile clicked");
-  const openEditButton = document.querySelector("#modal-change-avatar");
-  openEditButton.classList.add("modal_open");
-};
-
-const handleEditProfileClick = () => {
-  console.log("edit profile clicked");
-  const openEditButton = document.querySelector("#modal-edit-profile");
-  openEditButton.classList.add("modal_open");
-};
-
-const handleAddPlaceClick = () => {
-  console.log("addplace clicked");
-  const openEditButton = document.querySelector("#modal-add-place");
-  openEditButton.classList.add("modal_open");
-};
-
-function Main() {
+function Main(props) {
   return (
     <main>
       <section className="profile">
-        <div className="profile__avatar" id="profile-avatar-container" onClick={handleEditAvatarclick}>
+        <div
+          className="profile__avatar"
+          id="profile-avatar-container"
+          onClick={props.onEditAvatarClick}
+        >
           <img
-            
+          
             className="profile__avatar-image"
             src={flash}
             alt="Profile Picture"
@@ -42,7 +30,7 @@ function Main() {
           </h1>
 
           <Button
-            onClick={handleEditProfileClick}
+            onClick={props.onEditProfileClick}
             aria-label="Edit Profile Button"
             type="button"
             className="button profile__button-edit"
@@ -52,7 +40,7 @@ function Main() {
           <p className="profile__about" id="profile-about"></p>
         </div>
         <Button
-          onClick={handleAddPlaceClick}
+          onClick={props.onAddPlaceClick}
           aria-label="Add Place Button"
           type="button"
           className="button profile__button-add"
