@@ -101,7 +101,7 @@
   line-height: 1.2;
   position: relative;
 }
-.modal__form_type_inputless {
+.modal__form_type_check-delete {
   margin: 7px 0 0;
 }
 .modal__input {

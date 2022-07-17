@@ -6,6 +6,7 @@ import flash from "../images/flash.png";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
+import PopupWithForm from "./PopupWithForm";
 import "../blocks/modal.css";
 
 /* ---------------------------- function App(){} ---------------------------- */
@@ -16,94 +17,76 @@ function App() {
       <Header />
       <Main />
       <Footer />
+      <PopupWithForm
+        name="change-avatar"
+        title="Change profile picture"
+        submitText="Save"
+      >
+        <input
+          name="input-avatar-link"
+          placeholder="Avatar link"
+          className="modal__input"
+          id="input-avatar-link"
+          type="url"
+          required
+        />
+        <span className="modal__error" id="input-avatar-link-error"></span>
+      </PopupWithForm>
+      <PopupWithForm name="edit-profile" title="Edit profile" submitText="Save">
+        <input
+          name="input-name"
+          placeholder="Name"
+          className="modal__input"
+          id="input-profile-name"
+          type="text"
+          minLength="2"
+          maxLength="40"
+          required
+        />
+        <span className="modal__error" id="input-profile-name-error"></span>
+        <input
+          name="input-about"
+          placeholder="About me"
+          className="modal__input"
+          id="input-profile-about"
+          type="text"
+          minLength="2"
+          maxLength="200"
+          required
+        />
+        <span className="modal__error" id="input-profile-about-error"></span>
+      </PopupWithForm>
 
-      <div className="modal" id="modal-change-avatar">
-        <div className="modal__content">
-          <button
-            aria-label="Close Form Button"
-            type="button"
-            className="button modal__button-close"
-            id="change-avatar-close-button"
-          ></button>
-          <h2 className="modal__title">Change profile picture</h2>
-          <form
-            className="modal__form"
-            id="modal-form-change-avatar"
-            name="form-change-avatar"
-            noValidate
-          >
-            <input
-              name="input-avatar-link"
-              placeholder="Avatar link"
-              className="modal__input"
-              id="input-avatar-link"
-              type="url"
-              required
-            />
-            <span className="modal__error" id="input-avatar-link-error"></span>
-            <button
-              aria-label="Submit New Avatar Form Button"
-              type="submit"
-              id="new-avatar-submit-button"
-              className="button modal__button-submit"
-            >
-              Save
-            </button>
-          </form>
-        </div>
-      </div>
-      <div className="modal" id="modal-edit-profile">
-        <div className="modal__content">
-          <button
-            aria-label="Close Form Button"
-            type="button"
-            className="button modal__button-close"
-            id="edit-profile-close-button"
-          ></button>
-          <h2 className="modal__title">Edit profile</h2>
-          <form
-            className="modal__form"
-            id="modal-form-edit-profile"
-            name="form-edit-profile"
-            noValidate
-          >
-            <input
-              name="input-name"
-              placeholder="Name"
-              className="modal__input"
-              id="input-profile-name"
-              type="text"
-              minLength="2"
-              maxLength="40"
-              required
-            />
-            <span className="modal__error" id="input-profile-name-error"></span>
-            <input
-              name="input-about"
-              placeholder="About me"
-              className="modal__input"
-              id="input-profile-about"
-              type="text"
-              minLength="2"
-              maxLength="200"
-              required
-            />
-            <span
-              className="modal__error"
-              id="input-profile-about-error"
-            ></span>
-            <button
-              aria-label="Submit Form Button"
-              type="submit"
-              id="edit-profile-submit-button"
-              className="button modal__button-submit"
-            >
-              Save
-            </button>
-          </form>
-        </div>
-      </div>
+      <PopupWithForm
+        name="check-delete"
+        title="Are you sure?"
+        submitText="Yes"
+      ></PopupWithForm>
 
+      <PopupWithForm name="add-place" title="New Place" submitText="Save">
+        <input
+          name="input-place-title"
+          placeholder="Title"
+          className="modal__input"
+          id="input-place-title"
+          type="text"
+          minLength="1"
+          maxLength="30"
+          required
+        />
+        <span className="modal__error" id="input-place-title-error"></span>
+        <input
+          name="input-place-link"
+          placeholder="Image link"
+          className="modal__input"
+          id="input-place-link"
+          type="url"
+          required
+        />
+        <span className="modal__error" id="input-place-link-error"></span>
+      </PopupWithForm>
+
+      
       <div className="modal modal_type_image" id="modal-image-popup">
         <div className="modal__content modal__content_type_image">
           <button
@@ -116,78 +99,7 @@ function App() {
           <p className="modal__caption"></p>
         </div>
       </div>
-      <div className="modal" id="modal-check-delete">
-        <div className="modal__content">
-          <button
-            aria-label="Close Form Button"
-            type="button"
-            className="button modal__button-close"
-            id="check-delete-close-button"
-          ></button>
-          <h2 className="modal__title">Are you sure?</h2>
-          <form
-            className="modal__form modal__form_type_inputless"
-            id="modal-form-check-delete"
-            name="form-check-delete"
-            noValidate
-          >
-            <button
-              aria-label="Confirm Card Delete Button"
-              type="submit"
-              id="check-delete-submit-button"
-              className="button modal__button-submit"
-            >
-              Yes
-            </button>
-          </form>
-        </div>
-      </div>
-      <div className="modal" id="modal-add-place">
-        <div className="modal__content">
-          <button
-            aria-label="Close Form Button"
-            type="button"
-            className="button modal__button-close"
-            id="add-place-close-button"
-          ></button>
-          <h2 className="modal__title">New Place</h2>
-          <form
-            className="modal__form"
-            id="modal-form-add-place"
-            name="form-add-place"
-            noValidate
-          >
-            <input
-              name="input-place-title"
-              placeholder="Title"
-              className="modal__input"
-              id="input-place-title"
-              type="text"
-              minLength="1"
-              maxLength="30"
-              required
-            />
-            <span className="modal__error" id="input-place-title-error"></span>
-            <input
-              name="input-place-link"
-              placeholder="Image link"
-              className="modal__input"
-              id="input-place-link"
-              type="url"
-              required
-            />
-            <span className="modal__error" id="input-place-link-error"></span>
-            <button
-              aria-label="Submit New Places Form Button"
-              type="submit"
-              id="add-place-submit-button"
-              className="button modal__button-submit"
-            >
-              Save
-            </button>
-          </form>
-        </div>
-      </div>
+
       <template id="card-template" className="card-template">
         <li className="cards__item">
           <button
