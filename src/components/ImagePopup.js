@@ -3,7 +3,7 @@ import "../blocks/modal.css";
 
 
 
-function ImagePopup() {
+function ImagePopup(props) {
     return (
         <div className="modal modal_type_image" id="modal-image-popup">
         <div className="modal__content modal__content_type_image">

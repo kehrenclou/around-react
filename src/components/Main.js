@@ -1,5 +1,5 @@
 import flash from "../images/flash.png";
-import Button from "./Button";
+
 import { api } from "../utils/api";
 import PopupWithForm from "./PopupWithForm";
 import App from "./App";
@@ -59,25 +59,25 @@ function Main(props) {
             {userName}
           </h1>
 
-          <Button
+          <button
             onClick={props.onEditProfileClick}
             aria-label="Edit Profile Button"
             type="button"
             className="button profile__button-edit"
             id="edit-profile-open-button"
-          ></Button>
+          ></button>
 
           <p className="profile__about" id="profile-about">
             {userDescription}
           </p>
         </div>
-        <Button
+        <button
           onClick={props.onAddPlaceClick}
           aria-label="Add Place Button"
           type="button"
           className="button profile__button-add"
           id="add-place-open-button"
-        ></Button>
+        ></button>
       </section>
       <section className="cards">
         <ul className="cards__list">
