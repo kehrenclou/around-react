@@ -19,7 +19,7 @@ function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
     React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
-  const [selectedCard,setSelectedCard]=React.useState();
+  const [selectedCard, setSelectedCard] = React.useState();
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
@@ -31,18 +31,20 @@ function App() {
 
   function handleAddPlaceClick() {
     setAddPlacePopupOpen(true);
+    console.log(isAddPlacePopupOpen);
   }
 
-  function handleCardClick(){
-    setSelectedCard();
+  function handleCardClick(clickedCard) {
+    setSelectedCard(clickedCard);
+    console.log(clickedCard);
+    console.log(selectedCard);
   }
+
   function closeAllPopups() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
   }
-
-  
 
   return (
     <div className="page">
@@ -51,6 +53,7 @@ function App() {
         onEditAvatarClick={handleEditAvatarClick}
         onEditProfileClick={handleEditProfileClick}
         onAddPlaceClick={handleAddPlaceClick}
+        onCardClick={handleCardClick}
       ></Main>
       <Footer />
       <PopupWithForm
@@ -137,9 +140,9 @@ function App() {
         <span className="modal__error" id="input-place-link-error"></span>
       </PopupWithForm>
 
-      <ImagePopup></ImagePopup>
+      <ImagePopup card={selectedCard}></ImagePopup>
 
- <Card></Card>
+    
       <script type="module" src="./pages/index.js"></script>
     </div>
   );

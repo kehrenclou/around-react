@@ -36,7 +36,7 @@ function Main(props) {
       .catch((err) => {
         api.handleErrorResponse(err);
       });
-  },[]);
+  }, []);
 
   return (
     <main>
@@ -83,6 +83,8 @@ function Main(props) {
         <ul className="cards__list">
           {cards.map((card) => (
             <Card
+              onCardClick={props.onCardClick}
+              card={card}
               key={card.id}
               link={card.link}
               title={card.title}

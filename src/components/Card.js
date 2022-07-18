@@ -2,7 +2,9 @@ import "../blocks/cards.css";
 import Main from "./Main";
 
 export default function Card(props) {
-    
+  function handleClick() {
+    props.onCardClick(props.card);
+  }
   return (
     <li className="cards__item">
       <button
@@ -12,6 +14,7 @@ export default function Card(props) {
         id="place-delete-button"
       ></button>
       <img
+        onClick={handleClick}
         src={props.link}
         alt={props.name}
         className="cards__image"
