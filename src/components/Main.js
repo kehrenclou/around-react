@@ -1,12 +1,43 @@
 import flash from "../images/flash.png";
 import Button from "./Button";
+import { api } from "../utils/api";
 import PopupWithForm from "./PopupWithForm";
 import App from "./App";
 import "../blocks/profile.css";
 import "../blocks/button.css";
 import "../blocks/modal.css";
+import React from "react";
+import Card from "./Card";
 
 function Main(props) {
+  const [userName, setUserName] = React.useState();
+  const [userDescription, setUserDescription] = React.useState();
+  const [userAvatar, setUserAvatar] = React.useState();
+  const [cards, setCards] = React.useState([]);
+
+  React.useEffect(() => {
+    api
+      .getAppInfo()
+      .then(([userData, initialCards]) => {
+        setUserName(userData.name);
+        setUserDescription(userData.about);
+        setUserAvatar(userData.avatar);
+        setCards(
+          initialCards.map((item) => ({
+            id: item._id,
+            likes: item.likes,
+            link: item.link,
+            title: item.name,
+            ownerId: item.owner._id,
+            imageId: item._id,
+          }))
+        );
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  },[]);
+
   return (
     <main>
       <section className="profile">
@@ -16,9 +47,8 @@ function Main(props) {
           onClick={props.onEditAvatarClick}
         >
           <img
-          
             className="profile__avatar-image"
-            src={flash}
+            src={userAvatar}
             alt="Profile Picture"
             id="profile-avatar-image"
           />
@@ -26,7 +56,7 @@ function Main(props) {
 
         <div className="profile__details">
           <h1 className="profile__name" id="profile-name">
-            Jacques Cousteau
+            {userName}
           </h1>
 
           <Button
@@ -37,7 +67,9 @@ function Main(props) {
             id="edit-profile-open-button"
           ></Button>
 
-          <p className="profile__about" id="profile-about"></p>
+          <p className="profile__about" id="profile-about">
+            {userDescription}
+          </p>
         </div>
         <Button
           onClick={props.onAddPlaceClick}
@@ -48,7 +80,20 @@ function Main(props) {
         ></Button>
       </section>
       <section className="cards">
-        <ul className="cards__list"></ul>
+        <ul className="cards__list">
+          {cards.map((card) => (
+            <Card
+              key={card.id}
+              link={card.link}
+              title={card.title}
+              alt={card.title}
+              ownerId={card.ownerId}
+              imageId={card.imageId}
+              likes={card.likes}
+              likeCount={card.likes.length}
+            />
+          ))}
+        </ul>
       </section>
     </main>
   );

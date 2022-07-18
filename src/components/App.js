@@ -7,6 +7,7 @@ import flash from "../images/flash.png";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
+import Card from "./Card";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import "../blocks/modal.css";
@@ -18,6 +19,7 @@ function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
     React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
+  const [selectedCard,setSelectedCard]=React.useState();
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
@@ -31,11 +33,16 @@ function App() {
     setAddPlacePopupOpen(true);
   }
 
+  function handleCardClick(){
+    setSelectedCard();
+  }
   function closeAllPopups() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
   }
+
+  
 
   return (
     <div className="page">
@@ -132,29 +139,7 @@ function App() {
 
       <ImagePopup></ImagePopup>
 
-      <template id="card-template" className="card-template">
-        <li className="cards__item">
-          <button
-            aria-label="Delete button"
-            type="button"
-            className="button cards__button_type_delete"
-            id="place-delete-button"
-          ></button>
-          <img src=" " alt=" " className="cards__image" id="card-image" />
-          <div className="cards__textbox">
-            <h2 className="cards__text" id="card-text"></h2>
-            <div className="cards__like-container">
-              <button
-                aria-label="Like Button"
-                type="button"
-                className="button cards__button_type_like"
-                id="place-like-button"
-              ></button>
-              <p className="cards__like-count">#</p>
-            </div>
-          </div>
-        </li>
-      </template>
+ <Card></Card>
       <script type="module" src="./pages/index.js"></script>
     </div>
   );
