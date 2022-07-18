@@ -17,21 +17,24 @@ function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
     React.useState(false);
-  const [isAddPlacePopupOpen, setaddPlacePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
 
   function handleEditAvatarClick() {
-    console.log("edit profile clicked");
     setEditAvatarPopupOpen(true);
   }
 
   function handleEditProfileClick() {
-    console.log("edit profile clicked");
     setEditProfilePopupOpen(true);
   }
 
   function handleAddPlaceClick() {
-    console.log("addplace clicked");
-    setaddPlacePopupOpen(true);
+    setAddPlacePopupOpen(true);
+  }
+
+  function closeAllPopups() {
+    setEditAvatarPopupOpen(false);
+    setEditProfilePopupOpen(false);
+    setAddPlacePopupOpen(false);
   }
 
   return (
@@ -45,6 +48,7 @@ function App() {
       <Footer />
       <PopupWithForm
         isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
         name="change-avatar"
         title="Change profile picture"
         submitText="Save"
@@ -61,6 +65,7 @@ function App() {
       </PopupWithForm>
       <PopupWithForm
         isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
         name="edit-profile"
         title="Edit profile"
         submitText="Save"
@@ -90,12 +95,19 @@ function App() {
       </PopupWithForm>
 
       <PopupWithForm
+        onClose={closeAllPopups}
         name="check-delete"
         title="Are you sure?"
         submitText="Yes"
       ></PopupWithForm>
 
-      <PopupWithForm  isOpen={isAddPlacePopupOpen} name="add-place" title="New Place" submitText="Save">
+      <PopupWithForm
+        isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
+        name="add-place"
+        title="New Place"
+        submitText="Save"
+      >
         <input
           name="input-place-title"
           placeholder="Title"
