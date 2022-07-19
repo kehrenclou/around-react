@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/around-react/static/css/main.6bd70d54.css",
+    "main.js": "/around-react/static/js/main.1d5e7817.js",
+    "static/js/787.1c78f32b.chunk.js": "/around-react/static/js/787.1c78f32b.chunk.js",
+    "static/media/Inter-Medium.woff?v=3.19": "/around-react/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
+    "static/media/Inter-Black.woff?v=3.19": "/around-react/static/media/Inter-Black.c6938660eec019fefd68.woff",
+    "static/media/Inter-Regular.woff?v=3.19": "/around-react/static/media/Inter-Regular.8c206db99195777c6769.woff",
+    "static/media/HeaderLogo.svg": "/around-react/static/media/HeaderLogo.160da9041459c06327142659abb3aba8.svg",
+    "static/media/heartemoji.svg": "/around-react/static/media/heartemoji.99043841e8bec6b9df21.svg",
+    "index.html": "/around-react/index.html",
+    "static/media/trash.svg": "/around-react/static/media/trash.58592128cff8beb55000.svg",
+    "static/media/heartemojiactive.svg": "/around-react/static/media/heartemojiactive.f8482d28867cec189b08.svg",
+    "static/media/closebutton.svg": "/around-react/static/media/closebutton.e6c3a9a9a26912881a20.svg",
+    "static/media/editbutton.svg": "/around-react/static/media/editbutton.8bf1d41faaeae29a8630.svg",
+    "static/media/addbutton.svg": "/around-react/static/media/addbutton.774639ca09cef6665aef.svg",
+    "main.6bd70d54.css.map": "/around-react/static/css/main.6bd70d54.css.map",
+    "main.1d5e7817.js.map": "/around-react/static/js/main.1d5e7817.js.map",
+    "787.1c78f32b.chunk.js.map": "/around-react/static/js/787.1c78f32b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6bd70d54.css",
+    "static/js/main.1d5e7817.js"
+  ]
+}
