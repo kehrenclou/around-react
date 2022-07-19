@@ -1,24 +1,26 @@
 import "../blocks/modal.css";
+import React from "react";
 
-function ImagePopup(props) {
-  return (
+function ImagePopup({ card, onClose }) {
+  return card ? (
     <div
-      className={`modal modal_type_image ${props.card ? "modal_open" : ""}`}
+      className="modal modal_type_image modal_open"
       id="modal-image-popup"
-      card={props.card}
+      card={card}
     >
       <div className="modal__content modal__content_type_image">
         <button
+          onClick={onClose}
           aria-label="Close Image Button"
           type="button"
           className="button modal__button-close"
           id="modal-image-close-button"
         ></button>
-        <img src={props.link} alt={props.alt} className="modal__image" />
-        <p className="modal__caption"></p>
+        <img src={card.link} alt={card.title} className="modal__image" />
+        <p className="modal__caption">{card.title}</p>
       </div>
     </div>
-  );
+  ) : null;
 }
 
 export default ImagePopup;

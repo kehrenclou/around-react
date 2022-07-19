@@ -1,5 +1,5 @@
 /* --------------------------------- imports -------------------------------- */
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../logo.svg";
 import "../index.css";
 import HeaderLogo from "../images/HeaderLogo.svg";
@@ -36,14 +36,14 @@ function App() {
 
   function handleCardClick(clickedCard) {
     setSelectedCard(clickedCard);
-    console.log(clickedCard);
-    console.log(selectedCard);
   }
 
   function closeAllPopups() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
+    setSelectedCard(null);
+    console.log("imageclicked");
   }
 
   return (
@@ -140,9 +140,8 @@ function App() {
         <span className="modal__error" id="input-place-link-error"></span>
       </PopupWithForm>
 
-      <ImagePopup card={selectedCard}></ImagePopup>
+      <ImagePopup card={selectedCard} onClose={closeAllPopups}></ImagePopup>
 
-    
       <script type="module" src="./pages/index.js"></script>
     </div>
   );
