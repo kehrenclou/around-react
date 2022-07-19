@@ -1,5 +1,3 @@
-import "../blocks/modal.css";
-
 function PopupWithForm(props) {
   return (
     <div
@@ -8,7 +6,7 @@ function PopupWithForm(props) {
     >
       <div className="modal__content">
         <button
-        onClick={props.onClose}
+          onClick={props.onClose}
           aria-label="Close Form Button"
           type="button"
           className="button modal__button-close"

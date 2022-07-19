@@ -1,7 +1,8 @@
 function Footer() {
+  const currYear = new Date().getFullYear();
   return (
     <footer className="footer">
-      <p className="footer__text">© 2021 Around The U.S.</p>
+      <p className="footer__text">© {currYear} Around The U.S.</p>
     </footer>
   );
 }

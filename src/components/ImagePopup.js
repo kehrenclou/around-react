@@ -1,12 +1,10 @@
-import "../blocks/modal.css";
 import React from "react";
 
 function ImagePopup({ card, onClose }) {
-  return card ? (
+  return (
     <div
-      className="modal modal_type_image modal_open"
+      className={`modal modal_type_image ${card ? "modal_open" : ""}`}
       id="modal-image-popup"
-      card={card}
     >
       <div className="modal__content modal__content_type_image">
         <button
@@ -16,11 +14,11 @@ function ImagePopup({ card, onClose }) {
           className="button modal__button-close"
           id="modal-image-close-button"
         ></button>
-        <img src={card.link} alt={card.title} className="modal__image" />
-        <p className="modal__caption">{card.title}</p>
+        <img src={card?.link} alt={card?.title} className="modal__image" />
+        <p className="modal__caption">{card?.title}</p>
       </div>
     </div>
-  ) : null;
+  );
 }
 
 export default ImagePopup;

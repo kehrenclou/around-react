@@ -1,15 +1,11 @@
 import { api } from "../utils/api";
-
-import "../blocks/profile.css";
-import "../blocks/button.css";
-import "../blocks/modal.css";
 import React from "react";
 import Card from "./Card";
 
 function Main(props) {
-  const [userName, setUserName] = React.useState();
-  const [userDescription, setUserDescription] = React.useState();
-  const [userAvatar, setUserAvatar] = React.useState();
+  const [userName, setUserName] = React.useState("");
+  const [userDescription, setUserDescription] = React.useState("");
+  const [userAvatar, setUserAvatar] = React.useState("");
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {

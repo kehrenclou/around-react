@@ -1,5 +1,3 @@
-import "../blocks/cards.css";
-
 export default function Card(props) {
   function handleClick() {
     props.onCardClick(props.card);
