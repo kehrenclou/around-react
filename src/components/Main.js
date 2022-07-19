@@ -1,8 +1,5 @@
-import flash from "../images/flash.png";
-
 import { api } from "../utils/api";
-import PopupWithForm from "./PopupWithForm";
-import App from "./App";
+
 import "../blocks/profile.css";
 import "../blocks/button.css";
 import "../blocks/modal.css";

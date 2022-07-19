@@ -1,13 +1,10 @@
 /* --------------------------------- imports -------------------------------- */
-import React, { useEffect } from "react";
-import logo from "../logo.svg";
+import React from "react";
 import "../index.css";
-import HeaderLogo from "../images/HeaderLogo.svg";
-import flash from "../images/flash.png";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import Card from "./Card";
+
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import "../blocks/modal.css";
@@ -43,7 +40,6 @@ function App() {
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
     setSelectedCard(null);
-    console.log("imageclicked");
   }
 
   return (

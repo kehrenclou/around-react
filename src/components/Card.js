@@ -1,5 +1,4 @@
 import "../blocks/cards.css";
-import Main from "./Main";
 
 export default function Card(props) {
   function handleClick() {
