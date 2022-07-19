@@ -28,7 +28,7 @@ function App() {
 
   function handleAddPlaceClick() {
     setAddPlacePopupOpen(true);
-    console.log(isAddPlacePopupOpen);
+   
   }
 
   function handleCardClick(clickedCard) {
@@ -43,6 +43,7 @@ function App() {
   }
 
   return (
+    <div className="root">
     <div className="page">
       <Header />
       <Main
@@ -139,6 +140,7 @@ function App() {
       <ImagePopup card={selectedCard} onClose={closeAllPopups}></ImagePopup>
 
       <script type="module" src="./pages/index.js"></script>
+    </div>
     </div>
   );
 }
