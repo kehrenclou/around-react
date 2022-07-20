@@ -15,16 +15,7 @@ function Main(props) {
         setUserName(userData.name);
         setUserDescription(userData.about);
         setUserAvatar(userData.avatar);
-        setCards(
-          initialCards.map((item) => ({
-            id: item._id,
-            likes: item.likes,
-            link: item.link,
-            title: item.name,
-            ownerId: item.owner._id,
-            imageId: item._id,
-          }))
-        );
+        setCards(initialCards);
       })
       .catch((err) => {
         api.handleErrorResponse(err);
@@ -78,12 +69,12 @@ function Main(props) {
             <Card
               onCardClick={props.onCardClick}
               card={card}
-              key={card.id}
+              key={card._id}
               link={card.link}
-              title={card.title}
-              alt={card.title}
-              ownerId={card.ownerId}
-              imageId={card.imageId}
+              title={card.name}
+              alt={card.name}
+              ownerId={card.owner._id}
+              imageId={card._id}
               likes={card.likes}
               likeCount={card.likes.length}
             />
