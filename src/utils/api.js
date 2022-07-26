@@ -66,23 +66,15 @@ class Api {
       }),
     }).then(this._handleResponse);
   }
-  //add Like not functional yet
-  addLikeOnCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      headers: this._headers,
-      method: "PUT",
-      body: JSON.stringify(),
-    }).then(this._handleResponse);
-  }
 
-  //delete like
-  deleteLikeOnCard(cardId) {
+  changeLikeCardStatus(cardId,like){
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       headers: this._headers,
-      method: "DELETE",
+      method: like ? "PUT" : "DELETE",
       body: JSON.stringify(),
     }).then(this._handleResponse);
   }
+ 
   //delete card
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {

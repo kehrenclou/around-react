@@ -5,12 +5,31 @@ import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 /* -------------------------- function Main(props) -------------------------- */
-function Main(props) {
-  const { name, about, avatar } = React.useContext(CurrentUserContext);
+function Main({
+  onEditAvatarClick,
+  onEditProfileClick,
+  onAddPlaceClick,
+  onCardClick,
+  ...props
+}) {
+  const { name, about, avatar, ...currentUser } =
+    React.useContext(CurrentUserContext);
   const [cards, setCards] = React.useState([]);
 
+  function handleCardLike(card) {
+    // Check one more time if this card was already liked
+    const isLiked = card.likes.some((user) => user._id === currentUser._id);
 
-  
+    // Send a request to the API and getting the updated card data
+    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+      setCards((state) =>
+        state.map((currentCard) =>
+          currentCard._id === card._id ? newCard : currentCard
+        )
+      );
+    });
+  }
+
   React.useEffect(() => {
     api
       .getInitialCards()
@@ -28,12 +47,12 @@ function Main(props) {
         <div
           className="profile__avatar"
           id="profile-avatar-container"
-          onClick={props.onEditAvatarClick}
+          onClick={onEditAvatarClick}
         >
           <img
             className="profile__avatar-image"
             src={avatar}
-            alt="Profile Picture"
+            alt="Profile"
             id="profile-avatar-image"
           />
         </div>
@@ -44,7 +63,7 @@ function Main(props) {
           </h1>
 
           <button
-            onClick={props.onEditProfileClick}
+            onClick={onEditProfileClick}
             aria-label="Edit Profile Button"
             type="button"
             className="button profile__button-edit"
@@ -56,7 +75,7 @@ function Main(props) {
           </p>
         </div>
         <button
-          onClick={props.onAddPlaceClick}
+          onClick={onAddPlaceClick}
           aria-label="Add Place Button"
           type="button"
           className="button profile__button-add"
@@ -67,7 +86,8 @@ function Main(props) {
         <ul className="cards__list">
           {cards.map((card) => (
             <Card
-              onCardClick={props.onCardClick}
+              onCardClick={onCardClick}
+              onLikeClick={handleCardLike}
               card={card}
               key={card._id}
               link={card.link}
