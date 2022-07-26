@@ -6,18 +6,15 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 /* -------------------------- function Main(props) -------------------------- */
 function Main(props) {
-  // const [userName, setUserName] = React.useState("");
-  // const { avatar, name, description } = React.useContext(CurrentUserContext);
-  const currentUser = React.useContext(CurrentUserContext);
+  const { name, about, avatar } = React.useContext(CurrentUserContext);
   const [cards, setCards] = React.useState([]);
 
+
+  
   React.useEffect(() => {
-    debugger;
     api
-      .getPromiseCards()
-      // .getInitialCards()
+      .getInitialCards()
       .then((initialCards) => {
-        debugger;
         setCards(initialCards);
       })
       .catch((err) => {
@@ -35,7 +32,7 @@ function Main(props) {
         >
           <img
             className="profile__avatar-image"
-            src={currentUser.avatar}
+            src={avatar}
             alt="Profile Picture"
             id="profile-avatar-image"
           />
@@ -43,7 +40,7 @@ function Main(props) {
 
         <div className="profile__details">
           <h1 className="profile__name" id="profile-name">
-            {currentUser.name}
+            {name}
           </h1>
 
           <button
@@ -55,7 +52,7 @@ function Main(props) {
           ></button>
 
           <p className="profile__about" id="profile-about">
-            {currentUser.description}
+            {about}
           </p>
         </div>
         <button

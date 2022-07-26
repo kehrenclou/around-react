@@ -32,12 +32,6 @@ class Api {
     }).then(this._handleResponse);
   }
 
-  getPromiseCards() {
-    return Promise.all(this.getInitialCards());
-  }
-  getPromiseInfo() {
-    return Promise.all(this.getInfo());
-  }
   // getAppInfo() {
   //   return Promise.all([this.getInfo(), this.getInitialCards()]);
   // }

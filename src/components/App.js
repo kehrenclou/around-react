@@ -1,5 +1,5 @@
 /* --------------------------------- imports -------------------------------- */
-import React from "react";
+import React, { useEffect } from "react";
 import { api } from "../utils/api";
 import Header from "./Header";
 import Main from "./Main";
@@ -50,12 +50,11 @@ function App() {
     setSelectedCard(null);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     api
       // .getInfo()
-      .getPromiseInfo()
+      .getInfo()
       .then((userData) => {
-        console.log(userData);
         setCurrentUser(userData);
         // setUserName(userData.name);
         // setUserDescription(userData.about);
