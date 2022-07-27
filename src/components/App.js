@@ -10,6 +10,7 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import EditAvatarPopup from "./EditAvatarPopup";
 
 /* ---------------------------- function App(){} ---------------------------- */
 
@@ -26,9 +27,10 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({
     name: " ",
     about: " ",
+    avatar: " ",
   });
   // const [userDescription, setUserDescription] = React.useState("");
-  // const [userAvatar, setUserAvatar] = React.useState("");
+  const [userAvatar, setUserAvatar] = React.useState("");
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -47,11 +49,26 @@ function App() {
   }
 
   function handleUpdateUser(currentUser) {
-
     api
       .setUserInfo(currentUser.name, currentUser.about)
       .then((userData) => {
         setCurrentUser(userData);
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      })
+      .finally(() => {
+        closeAllPopups();
+      });
+  }
+
+  function handleUpdateAvatar(newAvatar) {
+    console.log(newAvatar.avatar);
+    api
+      .setProfileAvatar(newAvatar.avatar)
+      .then((newAvatar) => {
+        // setUserAvatar(newAvatar);
+        setUserAvatar(newAvatar);
       })
       .catch((err) => {
         api.handleErrorResponse(err);
@@ -70,7 +87,6 @@ function App() {
 
   useEffect(() => {
     api
-      // .getInfo()
       .getInfo()
       .then((userData) => {
         setCurrentUser(userData);
@@ -96,23 +112,12 @@ function App() {
             onCardClick={handleCardClick}
           ></Main>
           <Footer />
-          <PopupWithForm
+
+          <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
-            name="change-avatar"
-            title="Change profile picture"
-            submitText="Save"
-          >
-            <input
-              name="input-avatar-link"
-              placeholder="Avatar link"
-              className="modal__input"
-              id="input-avatar-link"
-              type="url"
-              required
-            />
-            <span className="modal__error" id="input-avatar-link-error"></span>
-          </PopupWithForm>
+            onUpdateAvatar={handleUpdateAvatar}
+          />
 
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}

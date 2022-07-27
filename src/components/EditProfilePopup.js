@@ -5,7 +5,13 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 /* ------------------------ function EditProfilePopup ----------------------- */
 
-function EditProfilePopup({ isOpen, onClose, onSubmit, ...props }) {
+function EditProfilePopup({
+  isOpen,
+  onClose,
+  onSubmit,
+  onUpdateUser,
+  ...props
+}) {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState(currentUser.name || "");
   const [description, setDescription] = useState(currentUser.about || "");
@@ -19,10 +25,10 @@ function EditProfilePopup({ isOpen, onClose, onSubmit, ...props }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("handle Submit called");
-    props.onUpdateUser({
-        name,
-        about: description,
+
+    onUpdateUser({
+      name,
+      about: description,
     });
   }
 
