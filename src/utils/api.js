@@ -37,7 +37,7 @@ class Api {
   // }
 
   //save profile data
-  patchProfileData(inputName, inputAbout) {
+  setUserInfo(inputName, inputAbout) {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
       method: "PATCH",

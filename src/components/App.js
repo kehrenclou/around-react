@@ -11,7 +11,6 @@ import ImagePopup from "./ImagePopup";
 
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-
 /* ---------------------------- function App(){} ---------------------------- */
 
 function App() {
@@ -36,7 +35,6 @@ function App() {
   }
 
   function handleEditProfileClick() {
-    debugger;
     setIsEditProfilePopupOpen(true);
   }
 
@@ -46,6 +44,21 @@ function App() {
 
   function handleCardClick(clickedCard) {
     setSelectedCard(clickedCard);
+  }
+
+  function handleUpdateUser(currentUser) {
+
+    api
+      .setUserInfo(currentUser.name, currentUser.about)
+      .then((userData) => {
+        setCurrentUser(userData);
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      })
+      .finally(() => {
+        closeAllPopups();
+      });
   }
 
   function closeAllPopups() {
@@ -104,6 +117,7 @@ function App() {
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
+            onUpdateUser={handleUpdateUser}
           />
 
           <PopupWithForm

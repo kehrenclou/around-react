@@ -5,29 +5,39 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 /* ------------------------ function EditProfilePopup ----------------------- */
 
-function EditProfilePopup({ isOpen, onClose, ...props }) {
+function EditProfilePopup({ isOpen, onClose, onSubmit, ...props }) {
   const currentUser = useContext(CurrentUserContext);
-  const [name, setName] = useState(currentUser.name);
-  const [description, setDescription] = useState(currentUser.about);
+  const [name, setName] = useState(currentUser.name || "");
+  const [description, setDescription] = useState(currentUser.about || "");
 
   const onNameChange = (event) => {
     setName(event.target.value);
-    console.log(name);
   };
   const onDescriptionChange = (event) => {
     setDescription(event.target.value);
-    console.log(description);
   };
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("handle Submit called");
+    props.onUpdateUser({
+        name,
+        about: description,
+    });
+  }
+
   useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
-  }, [currentUser]);
+    if (currentUser) {
+      setName(currentUser.name);
+      setDescription(currentUser.about);
+    }
+  }, [currentUser, isOpen]);
 
   return (
     <PopupWithForm
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={handleSubmit}
       name="edit-profile"
       title="Edit profile"
       submitText="Save"
@@ -41,7 +51,7 @@ function EditProfilePopup({ isOpen, onClose, ...props }) {
         minLength="2"
         maxLength="40"
         value={name}
-        onChange={onNameChange} //this is wrong...need to fix what to pass in
+        onChange={onNameChange}
         required
       />
       <span className="modal__error" id="input-profile-name-error"></span>
@@ -53,6 +63,7 @@ function EditProfilePopup({ isOpen, onClose, ...props }) {
         type="text"
         minLength="2"
         maxLength="200"
+        value={description}
         onChange={onDescriptionChange}
         required
       />

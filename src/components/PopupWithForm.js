@@ -1,32 +1,37 @@
-function PopupWithForm(props) {
+/* --------------------------------- imports -------------------------------- */
+import React from "react";
+
+/* ------------------------- function PopupWIthForm ------------------------- */
+function PopupWithForm({isOpen,onClose,onSubmit,name,title,children,submitText,...props}) {
 
   return (
     <div
-      className={`modal ${props.isOpen ? "modal_open" : ""}`}
-      id={`modal-${props.name}`}
+      className={`modal ${isOpen ? "modal_open" : ""}`}
+      id={`modal-${name}`}
     >
       <div className="modal__content">
         <button
-          onClick={props.onClose}
+          onClick={onClose}
           aria-label="Close Form Button"
           type="button"
           className="button modal__button-close"
-          id={`${props.name}-close-button`}
+          id={`${name}-close-button`}
         ></button>
-        <h2 className="modal__title">{props.title}</h2>
+        <h2 className="modal__title">{title}</h2>
         <form
-          className={`modal__form modal__form_type_${props.name}`}
-          id={`modal-form-${props.name}`}
-          name={`form-${props.name}`}
+          className={`modal__form modal__form_type_${name}`}
+          id={`modal-form-${name}`}
+          name={`form-${name}`}
+          onSubmit={onSubmit}
         >
-          {props.children}
+          {children}
           <button
             aria-label="Submit Form Button"
             type="submit"
-            id={`${props.name}-submit-button`}
+            id={`${name}-submit-button`}
             className="button modal__button-submit"
           >
-            {props.submitText}
+            {submitText}
           </button>
         </form>
       </div>
