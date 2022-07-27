@@ -29,8 +29,6 @@ function App() {
     about: " ",
     avatar: " ",
   });
-  // const [userDescription, setUserDescription] = React.useState("");
-  const [userAvatar, setUserAvatar] = React.useState("");
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -63,7 +61,6 @@ function App() {
   }
 
   function handleUpdateAvatar(newAvatar) {
-    console.log(newAvatar.avatar);
     api
       .setProfileAvatar(newAvatar.avatar)
       .then((newAvatar) => {
