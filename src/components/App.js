@@ -5,24 +5,28 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 
+import EditProfilePopup from "./EditProfilePopup";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+
 
 /* ---------------------------- function App(){} ---------------------------- */
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
+
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
+
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
 
   const [currentUser, setCurrentUser] = React.useState({
-    name: "DefaultName",
-    about: "Default About",
+    name: " ",
+    about: " ",
   });
   // const [userDescription, setUserDescription] = React.useState("");
   // const [userAvatar, setUserAvatar] = React.useState("");
@@ -32,6 +36,7 @@ function App() {
   }
 
   function handleEditProfileClick() {
+    debugger;
     setIsEditProfilePopupOpen(true);
   }
 
@@ -95,39 +100,11 @@ function App() {
             />
             <span className="modal__error" id="input-avatar-link-error"></span>
           </PopupWithForm>
-          <PopupWithForm
+
+          <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
-            name="edit-profile"
-            title="Edit profile"
-            submitText="Save"
-          >
-            <input
-              name="input-name"
-              placeholder="Name"
-              className="modal__input"
-              id="input-profile-name"
-              type="text"
-              minLength="2"
-              maxLength="40"
-              required
-            />
-            <span className="modal__error" id="input-profile-name-error"></span>
-            <input
-              name="input-about"
-              placeholder="About me"
-              className="modal__input"
-              id="input-profile-about"
-              type="text"
-              minLength="2"
-              maxLength="200"
-              required
-            />
-            <span
-              className="modal__error"
-              id="input-profile-about-error"
-            ></span>
-          </PopupWithForm>
+          />
 
           <PopupWithForm
             onClose={closeAllPopups}

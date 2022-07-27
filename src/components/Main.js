@@ -21,13 +21,33 @@ function Main({
     const isLiked = card.likes.some((user) => user._id === currentUser._id);
 
     // Send a request to the API and getting the updated card data
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) =>
-        state.map((currentCard) =>
-          currentCard._id === card._id ? newCard : currentCard
-        )
-      );
-    });
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard._id === card._id ? newCard : currentCard
+          )
+        );
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }
+
+  function handleCardDelete(card) {
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        setCards(
+          cards.filter(function (item) {
+            return item._id !== card._id;
+          })
+        );
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
   }
 
   React.useEffect(() => {
@@ -88,6 +108,7 @@ function Main({
             <Card
               onCardClick={onCardClick}
               onLikeClick={handleCardLike}
+              onCardDelete={handleCardDelete}
               card={card}
               key={card._id}
               link={card.link}

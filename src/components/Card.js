@@ -6,6 +6,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 export default function Card({
   onCardClick,
   onLikeClick,
+  onCardDelete,
   card,
   link,
   name,
@@ -19,6 +20,10 @@ export default function Card({
 
   function handleLikeClick() {
     onLikeClick(card);
+  }
+
+  function handleDeleteClick() {
+    onCardDelete(card);
   }
 
   const currentUser = React.useContext(CurrentUserContext);
@@ -37,6 +42,7 @@ export default function Card({
   return (
     <li className="cards__item">
       <button
+        onClick={handleDeleteClick}
         aria-label="Delete button"
         type="button"
         className={cardDeleteButtonClassName}
