@@ -68,7 +68,7 @@ function App() {
       .setProfileAvatar(newAvatar.avatar)
       .then((newAvatar) => {
         // setUserAvatar(newAvatar);
-        setUserAvatar(newAvatar);
+        setCurrentUser(newAvatar);
       })
       .catch((err) => {
         api.handleErrorResponse(err);
