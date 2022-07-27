@@ -29,6 +29,8 @@ function App() {
     about: " ",
     avatar: " ",
   });
+  
+  const [cards, setCards] = React.useState([]);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -97,6 +99,17 @@ function App() {
       });
   }, []);
 
+  React.useEffect(() => {
+    api
+      .getInitialCards()
+      .then((initialCards) => {
+        setCards(initialCards);
+      })
+      .catch((err) => {
+        api.handleErrorResponse(err);
+      });
+  }, []);
+
   return (
     <div className="root">
       <div className="page">
@@ -107,6 +120,7 @@ function App() {
             onEditProfileClick={handleEditProfileClick}
             onAddPlaceClick={handleAddPlaceClick}
             onCardClick={handleCardClick}
+            cards={cards}
           ></Main>
           <Footer />
 
