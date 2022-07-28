@@ -56,7 +56,7 @@ class Api {
     }).then(this._handleResponse);
   }
   //save new card
-  postNewCard(inputName, inputLink) {
+  addNewCard(inputName, inputLink) {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
       method: "POST",

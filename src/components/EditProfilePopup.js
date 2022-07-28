@@ -23,8 +23,8 @@ function EditProfilePopup({
     setDescription(event.target.value);
   };
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(event) {
+    event.preventDefault();
 
     onUpdateUser({
       name,
