@@ -8,6 +8,7 @@ function EditAvatarPopup({
   onClose,
   onSubmit,
   onUpdateAvatar,
+  isLoading,
   ...props
 }) {
   const avatarRef = useRef();
@@ -17,7 +18,7 @@ function EditAvatarPopup({
     onUpdateAvatar({
       avatar: avatarRef.current.value,
     });
-    avatarRef.current.value="";
+    avatarRef.current.value = "";
   }
 
   return (
@@ -27,7 +28,7 @@ function EditAvatarPopup({
       onSubmit={handleSubmit}
       name="change-avatar"
       title="Change profile picture"
-      submitText="Save"
+      submitText={`${isLoading ? "Saving" : "Save"}`}
     >
       <input
         name="input-avatar-link"

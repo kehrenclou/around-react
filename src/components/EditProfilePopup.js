@@ -10,6 +10,7 @@ function EditProfilePopup({
   onClose,
   onSubmit,
   onUpdateUser,
+  isLoading,
   ...props
 }) {
   const currentUser = useContext(CurrentUserContext);
@@ -46,7 +47,7 @@ function EditProfilePopup({
       onSubmit={handleSubmit}
       name="edit-profile"
       title="Edit profile"
-      submitText="Save"
+      submitText={`${isLoading ? "Saving" : "Save"}`}
     >
       <input
         name="input-name"

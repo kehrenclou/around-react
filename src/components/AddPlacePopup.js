@@ -8,6 +8,7 @@ function AddPlacePopup({
   onClose,
   onSubmit,
   onAddPlaceSubmit,
+  isLoading,
   ...props
 }) {
   const [name, setName] = useState("");
@@ -23,9 +24,11 @@ function AddPlacePopup({
 
   function handleSubmit(event) {
     event.preventDefault();
-
     onAddPlaceSubmit({ name, link });
+    setName("");
+    setLink("");
   }
+
 
   return (
     <PopupWithForm
@@ -34,7 +37,7 @@ function AddPlacePopup({
       onSubmit={handleSubmit}
       name="add-place"
       title="New Place"
-      submitText="Save"
+      submitText={`${isLoading ? "Saving" : "Save"}`}
     >
       <input
         name="input-place-title"
