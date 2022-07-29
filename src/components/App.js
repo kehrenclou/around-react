@@ -1,6 +1,6 @@
 /* --------------------------------- imports -------------------------------- */
-import React, { useEffect, useState, useCallback } from "react";
-import { api } from "../utils/api";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
+import Api from "../utils/api";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -17,6 +17,20 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 /*                                 functionApp                                */
 /* -------------------------------------------------------------------------- */
 function App() {
+  /* ------------------------- Api class - set up Api ------------------------- */
+
+  const baseUrl = "https://around.nomoreparties.co/v1/group-12";
+  const token = "72dee144-4e03-4ccf-86c7-08640cb55eca";
+
+  const api = useMemo(
+    () =>
+      new Api({
+        baseUrl: baseUrl,
+        headers: { authorization: token, "Content-Type": "application/json" },
+      }),
+    []
+  );
+
   /* ------------------------------- use states ------------------------------- */
   const [cards, setCards] = useState([]);
 
@@ -177,7 +191,7 @@ function App() {
       .catch((err) => {
         api.handleErrorResponse(err);
       });
-  }, []);
+  }, [api]);
 
   useEffect(() => {
     api
@@ -188,7 +202,7 @@ function App() {
       .catch((err) => {
         api.handleErrorResponse(err);
       });
-  }, []);
+  }, [api]);
 
   useEffect(() => {
     document.addEventListener("keydown", handleEscClose, false);
@@ -197,7 +211,6 @@ function App() {
     };
   }, [handleEscClose]);
 
-  
   /* --------------------------------- return --------------------------------- */
   return (
     <div className="root">
