@@ -17,7 +17,6 @@ function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit, isLoading }) {
     setName(event.target.value);
     setIsNameValid(event.target.validity.valid);
     setErrorMessage({ name: event.target.validationMessage });
-    console.log(event.target.validity);
   };
 
   const onLinkChange = (event) => {

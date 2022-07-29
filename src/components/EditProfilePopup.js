@@ -11,17 +11,28 @@ function EditProfilePopup({
   onSubmit,
   onUpdateUser,
   isLoading,
-  ...props
 }) {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState(currentUser.name || "");
   const [description, setDescription] = useState(currentUser.about || "");
+  const [isNameValid, setIsNameValid] = useState(false);
+  const [isDescriptionValid, setIsDescriptionValid] = useState(false);
+
+  const [errorMessage, setErrorMessage] = useState({
+    name: "",
+    description: "",
+  });
 
   const onNameChange = (event) => {
     setName(event.target.value);
+    setIsNameValid(event.target.validity.valid);
+    setErrorMessage({ name: event.target.validationMessage });
   };
+
   const onDescriptionChange = (event) => {
     setDescription(event.target.value);
+    setIsDescriptionValid(event.target.validity.valid);
+    setErrorMessage({ description: event.target.validationMessage });
   };
 
   function handleSubmit(event) {
@@ -61,7 +72,12 @@ function EditProfilePopup({
         onChange={onNameChange}
         required
       />
-      <span className="modal__error" id="input-profile-name-error"></span>
+      <span
+        className={`modal__error ${isNameValid ? "" : "modal__error_visible"}`}
+        id="input-profile-name-error"
+      >
+        {errorMessage.name}
+      </span>
       <input
         name="input-about"
         placeholder="About me"
@@ -74,7 +90,14 @@ function EditProfilePopup({
         onChange={onDescriptionChange}
         required
       />
-      <span className="modal__error" id="input-profile-about-error"></span>
+      <span
+        className={`modal__error ${
+          isDescriptionValid ? "" : "modal__error_visible"
+        }`}
+        id="input-profile-about-error"
+      >
+        {errorMessage.description}
+      </span>
     </PopupWithForm>
   );
 }
