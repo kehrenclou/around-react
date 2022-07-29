@@ -3,23 +3,27 @@ import React, { useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 /* ------------------------- function AddPlacePopup ------------------------- */
-function AddPlacePopup({
-  isOpen,
-  onClose,
-  onSubmit,
-  onAddPlaceSubmit,
-  isLoading,
-  ...props
-}) {
+function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit, isLoading }) {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
+  const [isLinkValid, setIsLinkValid] = useState(false);
+  const [isNameValid, setIsNameValid] = useState(false);
+  const [errorMessage, setErrorMessage] = useState({
+    name: "",
+    link: "",
+  });
 
   const onNameChange = (event) => {
     setName(event.target.value);
+    setIsNameValid(event.target.validity.valid);
+    setErrorMessage({ name: event.target.validationMessage });
+    console.log(event.target.validity);
   };
 
   const onLinkChange = (event) => {
     setLink(event.target.value);
+    setIsLinkValid(event.target.validity.valid);
+    setErrorMessage({ link: event.target.validationMessage });
   };
 
   function handleSubmit(event) {
@@ -28,7 +32,6 @@ function AddPlacePopup({
     setName("");
     setLink("");
   }
-
 
   return (
     <PopupWithForm
@@ -51,7 +54,12 @@ function AddPlacePopup({
         onChange={onNameChange}
         required
       />
-      <span className="modal__error" id="input-place-title-error"></span>
+      <span
+        className={`modal__error ${isNameValid ? "" : "modal__error_visible"}`}
+        id="input-place-title-error"
+      >
+        {errorMessage.name}
+      </span>
       <input
         name="input-place-link"
         placeholder="Image link"
@@ -62,7 +70,12 @@ function AddPlacePopup({
         onChange={onLinkChange}
         required
       />
-      <span className="modal__error" id="input-place-link-error"></span>
+      <span
+        className={`modal__error ${isLinkValid ? "" : "modal__error_visible"}`}
+        id="input-place-link-error"
+      >
+        {errorMessage.link}
+      </span>
     </PopupWithForm>
   );
 }

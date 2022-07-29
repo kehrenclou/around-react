@@ -1,17 +1,17 @@
 /* --------------------------------- imports -------------------------------- */
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 /* ------------------------ function EditAvatarPopup ------------------------ */
-function EditAvatarPopup({
-  isOpen,
-  onClose,
-  onSubmit,
-  onUpdateAvatar,
-  isLoading,
-  ...props
-}) {
+function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
   const avatarRef = useRef();
+  const [isLinkValid, setIsLinkValid] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  function handleLinkChange(event) {
+    setIsLinkValid(event.target.validity.valid);
+    setErrorMessage(event.target.validationMessage);
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -37,9 +37,15 @@ function EditAvatarPopup({
         id="input-avatar-link"
         type="url"
         ref={avatarRef}
+        onChange={handleLinkChange}
         required
       />
-      <span className="modal__error" id="input-avatar-link-error"></span>
+      <span
+        className={`modal__error ${isLinkValid ? "" : "modal__error_visible"}`}
+        id="input-avatar-link-error"
+      >
+        {errorMessage}
+      </span>
     </PopupWithForm>
   );
 }
