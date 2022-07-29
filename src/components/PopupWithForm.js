@@ -1,41 +1,48 @@
 /* --------------------------------- imports -------------------------------- */
-import React from "react";
+import React, { useEffect, useCallback } from "react";
+import Popup from "./Popup";
 
 /* ------------------------- function PopupWIthForm ------------------------- */
-function PopupWithForm({isOpen,onClose,onSubmit,name,title,children,submitText,...props}) {
-
+function PopupWithForm({
+  isOpen,
+  onClose,
+  onSubmit,
+  name,
+  title,
+  children,
+  submitText,
+  ...props
+}) {
   return (
-    <div
-      className={`modal ${isOpen ? "modal_open" : ""}`}
-      id={`modal-${name}`}
-    >
-      <div className="modal__content">
+    <Popup 
+    isOpen={isOpen}
+    onClose={onClose}
+    name={name}>
+      <button
+        onClick={onClose}
+        aria-label="Close Form Button"
+        type="button"
+        className="button modal__button-close"
+        id={`${name}-close-button`}
+      ></button>
+      <h2 className="modal__title">{title}</h2>
+      <form
+        className={`modal__form modal__form_type_${name}`}
+        id={`modal-form-${name}`}
+        name={`form-${name}`}
+        onSubmit={onSubmit}
+      >
+        {children}
         <button
-          onClick={onClose}
-          aria-label="Close Form Button"
-          type="button"
-          className="button modal__button-close"
-          id={`${name}-close-button`}
-        ></button>
-        <h2 className="modal__title">{title}</h2>
-        <form
-          className={`modal__form modal__form_type_${name}`}
-          id={`modal-form-${name}`}
-          name={`form-${name}`}
-          onSubmit={onSubmit}
+          aria-label="Submit Form Button"
+          type="submit"
+          id={`${name}-submit-button`}
+          className="button modal__button-submit"
         >
-          {children}
-          <button
-            aria-label="Submit Form Button"
-            type="submit"
-            id={`${name}-submit-button`}
-            className="button modal__button-submit"
-          >
-            {submitText}
-          </button>
-        </form>
-      </div>
-    </div>
+          {submitText}
+        </button>
+      </form>
+    </Popup>
   );
 }
 export default PopupWithForm;

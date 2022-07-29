@@ -1,5 +1,5 @@
 /* --------------------------------- imports -------------------------------- */
-import { api } from "../utils/api";
+// import { api } from "../utils/api";
 import React from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -63,7 +63,6 @@ function Main({
           {cards.map((card) => (
             <Card
               onCardClick={onCardClick}
-              // onLikeClick={handleCardLike}
               onLikeClick={onCardLike}
               onCardDelete={onCardDelete}
               card={card}

@@ -24,6 +24,7 @@ export default function Card({
 
   function handleDeleteClick() {
     onCardDelete(card);
+   
   }
 
   const currentUser = React.useContext(CurrentUserContext);

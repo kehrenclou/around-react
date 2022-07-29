@@ -6,10 +6,10 @@ import Main from "./Main";
 import Footer from "./Footer";
 
 import EditProfilePopup from "./EditProfilePopup";
-import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
+import ConfirmDeletePopup from "./ConfirmDeletePopup";
 
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
@@ -27,7 +27,12 @@ function App() {
     React.useState(false);
 
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+
+  const [isConfirmDeletePopupOpen, setIsConfirmDeletePopoupOpen] =
+    React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
+
+  const [cardToDelete, setCardToDelete] = React.useState({});
 
   const [currentUser, setCurrentUser] = React.useState({
     name: " ",
@@ -59,8 +64,25 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
+    setIsConfirmDeletePopoupOpen(false);
     setSelectedCard(null);
   }
+
+  const handleEscClose = React.useCallback((event) => {
+    if (event.key === "Escape") {
+      closeAllPopups();
+    }
+  },[] );
+
+  // const handleOutsideClickClose = React.useCallback((event) => {
+  //   const isOutside=event.target;
+  //   console.log(isOutside, "click");
+  //   // if (isOutside === "Escape") {
+  //   //   closeAllPopups();
+  //   //   //how to grab the modal to compare it or is there another way?
+  //   //   //look at using on click? not sure where to put it
+  //   // }
+  // }, []);
   /* --------------------------- handlers with apis --------------------------- */
 
   function handleUpdateUser(currentUser) {
@@ -116,19 +138,31 @@ function App() {
   }
 
   function handleCardDelete(card) {
+    setIsConfirmDeletePopoupOpen(true);
+    setCardToDelete(card);
+  }
+
+  function handleConfirmDelete(event) {
+    event.preventDefault();
+    setIsLoading(true);
     api
-      .deleteCard(card._id)
+      .deleteCard(cardToDelete._id)
       .then(() => {
         setCards(
           cards.filter(function (item) {
-            return item._id !== card._id;
+            return item._id !== cardToDelete._id;
           })
         );
       })
       .catch((err) => {
         api.handleErrorResponse(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+        closeAllPopups();
       });
   }
+
   function handleAddPlaceSubmit(newCard) {
     setIsLoading(true);
     api
@@ -167,6 +201,19 @@ function App() {
       });
   }, []);
 
+  React.useEffect(() => {
+    document.addEventListener("keydown", handleEscClose, false);
+    return () => {
+      document.removeEventListener("keydown", handleEscClose, false);
+    };
+  }, [handleEscClose]);
+
+  // React.useEffect(() => {
+  //   document.addEventListener("click", handleOutsideClickClose, false);
+  //   return () => {
+  //     document.removeEventListener("click", handleOutsideClickClose, false);
+  //   };
+  // }, [handleOutsideClickClose]);
   /* --------------------------------- return --------------------------------- */
   return (
     <div className="root">
@@ -198,12 +245,12 @@ function App() {
             isLoading={isLoading}
           />
 
-          <PopupWithForm
+          <ConfirmDeletePopup
+            isOpen={isConfirmDeletePopupOpen}
             onClose={closeAllPopups}
-            name="check-delete"
-            title="Are you sure?"
-            submitText="Yes"
-          ></PopupWithForm>
+            onSubmit={handleConfirmDelete}
+            isLoading={isLoading}
+          />
 
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
