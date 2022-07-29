@@ -1,4 +1,4 @@
-export default class Api {
+class Api {
   constructor({ baseUrl, headers }) {
     //constructor body
     this._baseUrl = baseUrl;
@@ -78,5 +78,14 @@ export default class Api {
     }).then(this._handleResponse);
   }
 }
+/* ------------------------- Api class - set up Api ------------------------- */
+
+const baseUrl = "https://around.nomoreparties.co/v1/group-12";
+const token = "72dee144-4e03-4ccf-86c7-08640cb55eca";
+const api = new Api({
+  baseUrl: baseUrl,
+  headers: { authorization: token, "Content-Type": "application/json" },
+});
 
 /* --------------------------------- exports -------------------------------- */
+export default api;
