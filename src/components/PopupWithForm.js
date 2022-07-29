@@ -1,5 +1,5 @@
 /* --------------------------------- imports -------------------------------- */
-import React, { useEffect, useCallback } from "react";
+import React from "react";
 import Popup from "./Popup";
 
 /* ------------------------- function PopupWIthForm ------------------------- */
@@ -11,13 +11,9 @@ function PopupWithForm({
   title,
   children,
   submitText,
-  ...props
 }) {
   return (
-    <Popup 
-    isOpen={isOpen}
-    onClose={onClose}
-    name={name}>
+    <Popup isOpen={isOpen} onClose={onClose} name={name}>
       <button
         onClick={onClose}
         aria-label="Close Form Button"

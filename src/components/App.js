@@ -1,5 +1,5 @@
 /* --------------------------------- imports -------------------------------- */
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useCallback, useEffect } from "react";
 import { api } from "../utils/api";
 import Header from "./Header";
 import Main from "./Main";
@@ -18,29 +18,27 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 /* -------------------------------------------------------------------------- */
 function App() {
   /* ------------------------------- use states ------------------------------- */
-  const [cards, setCards] = React.useState([]);
+  const [cards, setCards] = useState([]);
 
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
-    React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
 
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
-    React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
 
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
 
   const [isConfirmDeletePopupOpen, setIsConfirmDeletePopoupOpen] =
-    React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState(null);
+    useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
 
-  const [cardToDelete, setCardToDelete] = React.useState({});
+  const [cardToDelete, setCardToDelete] = useState({});
 
-  const [currentUser, setCurrentUser] = React.useState({
+  const [currentUser, setCurrentUser] = useState({
     name: " ",
     about: " ",
     avatar: " ",
   });
 
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   /* -------------------------------- functions ------------------------------- */
 
@@ -68,21 +66,12 @@ function App() {
     setSelectedCard(null);
   }
 
-  const handleEscClose = React.useCallback((event) => {
+  const handleEscClose = useCallback((event) => {
     if (event.key === "Escape") {
       closeAllPopups();
     }
-  },[] );
+  }, []);
 
-  // const handleOutsideClickClose = React.useCallback((event) => {
-  //   const isOutside=event.target;
-  //   console.log(isOutside, "click");
-  //   // if (isOutside === "Escape") {
-  //   //   closeAllPopups();
-  //   //   //how to grab the modal to compare it or is there another way?
-  //   //   //look at using on click? not sure where to put it
-  //   // }
-  // }, []);
   /* --------------------------- handlers with apis --------------------------- */
 
   function handleUpdateUser(currentUser) {
@@ -190,7 +179,7 @@ function App() {
       });
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     api
       .getInitialCards()
       .then((initialCards) => {
@@ -201,19 +190,14 @@ function App() {
       });
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener("keydown", handleEscClose, false);
     return () => {
       document.removeEventListener("keydown", handleEscClose, false);
     };
   }, [handleEscClose]);
 
-  // React.useEffect(() => {
-  //   document.addEventListener("click", handleOutsideClickClose, false);
-  //   return () => {
-  //     document.removeEventListener("click", handleOutsideClickClose, false);
-  //   };
-  // }, [handleOutsideClickClose]);
+  
   /* --------------------------------- return --------------------------------- */
   return (
     <div className="root">

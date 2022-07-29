@@ -12,7 +12,6 @@ export default function Card({
   name,
   title,
   likeCount,
-  ...props
 }) {
   function handleCardClick() {
     onCardClick(card);
@@ -24,7 +23,6 @@ export default function Card({
 
   function handleDeleteClick() {
     onCardDelete(card);
-   
   }
 
   const currentUser = React.useContext(CurrentUserContext);

@@ -4,8 +4,8 @@ import React, { useRef } from "react";
 function Popup({ isOpen, onClose, name, children }) {
   const popupRef = useRef();
 
-  function handleModalClick(e) {
-    if (isOpen && popupRef.current === e.target) {
+  function handleModalClick(event) {
+    if (isOpen && popupRef.current === event.target) {
       onClose();
     }
   }

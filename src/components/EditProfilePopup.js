@@ -5,13 +5,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 /* ------------------------ function EditProfilePopup ----------------------- */
 
-function EditProfilePopup({
-  isOpen,
-  onClose,
-  onSubmit,
-  onUpdateUser,
-  isLoading,
-}) {
+function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState(currentUser.name || "");
   const [description, setDescription] = useState(currentUser.about || "");

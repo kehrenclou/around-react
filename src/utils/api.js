@@ -32,11 +32,6 @@ class Api {
     }).then(this._handleResponse);
   }
 
-  // getAppInfo() {
-  //   return Promise.all([this.getInfo(), this.getInitialCards()]);
-  // }
-
-  //save profile data
   setUserInfo(inputName, inputAbout) {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
@@ -67,14 +62,14 @@ class Api {
     }).then(this._handleResponse);
   }
 
-  changeLikeCardStatus(cardId,like){
+  changeLikeCardStatus(cardId, like) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       headers: this._headers,
       method: like ? "PUT" : "DELETE",
       body: JSON.stringify(),
     }).then(this._handleResponse);
   }
- 
+
   //delete card
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {

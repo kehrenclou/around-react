@@ -1,5 +1,5 @@
 /* --------------------------------- imports -------------------------------- */
-// import { api } from "../utils/api";
+
 import React from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -13,8 +13,8 @@ function Main({
   onCardLike,
   onCardDelete,
   cards,
-  ...props
-}) {
+})
+ {
   const { name, about, avatar } = React.useContext(CurrentUserContext);
 
   return (
