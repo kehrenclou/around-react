@@ -12,7 +12,6 @@ function ImagePopup({ card, onClose }) {
       className={`modal modal_type_image ${card ? "modal_open" : ""}`}
       id="modal-image-popup"
       onClick={handleOutsideClick}
-      ref={imageRef}
     >
       <div className="modal__content modal__content_type_image">
         <button
