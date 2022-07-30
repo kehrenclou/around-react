@@ -17,13 +17,13 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
     description: "",
   });
 
-  const onNameChange = (event) => {
+  const handleNameChange = (event) => {
     setName(event.target.value);
     setIsNameValid(event.target.validity.valid);
     setErrorMessage({ name: event.target.validationMessage });
   };
 
-  const onDescriptionChange = (event) => {
+  const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
     setIsDescriptionValid(event.target.validity.valid);
     setErrorMessage({ description: event.target.validationMessage });
@@ -61,7 +61,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
         minLength="2"
         maxLength="40"
         value={name}
-        onChange={onNameChange}
+        onChange={handleNameChange}
         required
       />
       <span
@@ -79,7 +79,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
         minLength="2"
         maxLength="200"
         value={description}
-        onChange={onDescriptionChange}
+        onChange={handleDescriptionChange}
         required
       />
       <span

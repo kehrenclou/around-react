@@ -13,13 +13,13 @@ function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit, isLoading }) {
     link: "",
   });
 
-  const onNameChange = (event) => {
+  const handleNameChange = (event) => {
     setName(event.target.value);
     setIsNameValid(event.target.validity.valid);
     setErrorMessage({ name: event.target.validationMessage });
   };
 
-  const onLinkChange = (event) => {
+  const handleLinkChange = (event) => {
     setLink(event.target.value);
     setIsLinkValid(event.target.validity.valid);
     setErrorMessage({ link: event.target.validationMessage });
@@ -49,7 +49,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit, isLoading }) {
         minLength="1"
         maxLength="30"
         value={name}
-        onChange={onNameChange}
+        onChange={handleNameChange}
         required
       />
       <span
@@ -65,7 +65,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit, isLoading }) {
         id="input-place-link"
         type="url"
         value={link}
-        onChange={onLinkChange}
+        onChange={handleLinkChange}
         required
       />
       <span
