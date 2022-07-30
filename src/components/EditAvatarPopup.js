@@ -13,8 +13,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
     setErrorMessage(event.target.validationMessage);
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit() {
     onUpdateAvatar({
       avatar: avatarRef.current.value,
     });

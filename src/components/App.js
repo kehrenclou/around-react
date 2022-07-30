@@ -17,8 +17,6 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 /*                                 functionApp                                */
 /* -------------------------------------------------------------------------- */
 function App() {
- 
-
   /* ------------------------------- use states ------------------------------- */
   const [cards, setCards] = useState([]);
 
@@ -134,7 +132,7 @@ function App() {
   }
 
   function handleConfirmDelete(event) {
-    event.preventDefault();
+    // event.preventDefault();
     setIsLoading(true);
     api
       .deleteCard(cardToDelete._id)
@@ -179,7 +177,7 @@ function App() {
       .catch((err) => {
         api.handleErrorResponse(err);
       });
-  }, [api]);
+  }, []);
 
   useEffect(() => {
     api
@@ -190,7 +188,7 @@ function App() {
       .catch((err) => {
         api.handleErrorResponse(err);
       });
-  }, [api]);
+  }, []);
 
   useEffect(() => {
     document.addEventListener("keydown", handleEscClose, false);

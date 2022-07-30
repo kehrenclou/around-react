@@ -25,8 +25,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit, isLoading }) {
     setErrorMessage({ link: event.target.validationMessage });
   };
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function handleSubmit() {
     onAddPlaceSubmit({ name, link });
     setName("");
     setLink("");

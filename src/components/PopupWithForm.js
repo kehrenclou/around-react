@@ -12,6 +12,11 @@ function PopupWithForm({
   children,
   submitText,
 }) {
+  function handleSubmit(event) {
+    event.preventDefault();
+    onSubmit();
+  }
+
   return (
     <Popup isOpen={isOpen} onClose={onClose} name={name}>
       <button
@@ -26,7 +31,7 @@ function PopupWithForm({
         className={`modal__form modal__form_type_${name}`}
         id={`modal-form-${name}`}
         name={`form-${name}`}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
       >
         {children}
         <button

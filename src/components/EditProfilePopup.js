@@ -29,9 +29,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
     setErrorMessage({ description: event.target.validationMessage });
   };
 
-  function handleSubmit(event) {
-    event.preventDefault();
-
+  function handleSubmit() {
     onUpdateUser({
       name,
       about: description,
