@@ -58,6 +58,11 @@ function App() {
     setSelectedCard(clickedCard);
   }
 
+  function handleCardDelete(card) {
+    setIsConfirmDeletePopoupOpen(true);
+    setCardToDelete(card);
+  }
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -80,13 +85,13 @@ function App() {
       .setUserInfo(currentUser.name, currentUser.about)
       .then((userData) => {
         setCurrentUser(userData);
+        closeAllPopups();
       })
       .catch((err) => {
         api.handleErrorResponse(err);
       })
       .finally(() => {
         setIsLoading(false);
-        closeAllPopups();
       });
   }
 
@@ -97,13 +102,13 @@ function App() {
       .then((newAvatar) => {
         // setUserAvatar(newAvatar);
         setCurrentUser(newAvatar);
+        closeAllPopups();
       })
       .catch((err) => {
         api.handleErrorResponse(err);
       })
       .finally(() => {
         setIsLoading(false);
-        closeAllPopups();
       });
   }
 
@@ -126,11 +131,6 @@ function App() {
       });
   }
 
-  function handleCardDelete(card) {
-    setIsConfirmDeletePopoupOpen(true);
-    setCardToDelete(card);
-  }
-
   function handleConfirmDelete(event) {
     // event.preventDefault();
     setIsLoading(true);
@@ -142,13 +142,13 @@ function App() {
             return item._id !== cardToDelete._id;
           })
         );
+        closeAllPopups();
       })
       .catch((err) => {
         api.handleErrorResponse(err);
       })
       .finally(() => {
         setIsLoading(false);
-        closeAllPopups();
       });
   }
 
@@ -158,13 +158,13 @@ function App() {
       .addNewCard(newCard.name, newCard.link)
       .then((newCard) => {
         setCards([newCard, ...cards]);
+        closeAllPopups();
       })
       .catch((err) => {
         api.handleErrorResponse(err);
       })
       .finally(() => {
         setIsLoading(false);
-        closeAllPopups();
       });
   }
   /* --------------------------- useEffect api calls -------------------------- */
