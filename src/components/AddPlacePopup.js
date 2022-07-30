@@ -38,7 +38,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit, isLoading }) {
       onSubmit={handleSubmit}
       name="add-place"
       title="New Place"
-      submitText={`${isLoading ? "Saving" : "Save"}`}
+      submitText={isLoading ? "Saving" : "Save"}
     >
       <input
         name="input-place-title"

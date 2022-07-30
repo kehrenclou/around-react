@@ -27,7 +27,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
       onSubmit={handleSubmit}
       name="change-avatar"
       title="Change profile picture"
-      submitText={`${isLoading ? "Saving" : "Save"}`}
+      submitText={isLoading ? "Saving" : "Save"}
     >
       <input
         name="input-avatar-link"

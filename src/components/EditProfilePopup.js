@@ -50,7 +50,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
       onSubmit={handleSubmit}
       name="edit-profile"
       title="Edit profile"
-      submitText={`${isLoading ? "Saving" : "Save"}`}
+      submitText={isLoading ? "Saving" : "Save"}
     >
       <input
         name="input-name"

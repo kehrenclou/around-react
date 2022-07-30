@@ -12,7 +12,7 @@ function ConfirmDeletePopup({ onClose, isOpen, onSubmit, isLoading }) {
       onSubmit={onSubmit}
       name="check-delete"
       title="Are you sure?"
-      submitText={`${isLoading ? "Deleting" : "Yes"}`}
+      submitText={isLoading ? "Deleting" : "Yes"}
     ></PopupWithForm>
   );
 }
