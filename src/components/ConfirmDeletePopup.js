@@ -13,7 +13,7 @@ function ConfirmDeletePopup({ onClose, isOpen, onSubmit, isLoading }) {
       name="check-delete"
       title="Are you sure?"
       submitText={isLoading ? "Deleting" : "Yes"}
-    ></PopupWithForm>
+    />
   );
 }
 

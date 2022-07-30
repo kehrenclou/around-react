@@ -13,8 +13,7 @@ function Main({
   onCardLike,
   onCardDelete,
   cards,
-})
- {
+}) {
   const { name, about, avatar } = React.useContext(CurrentUserContext);
 
   return (
@@ -44,7 +43,7 @@ function Main({
             type="button"
             className="button profile__button-edit"
             id="edit-profile-open-button"
-          ></button>
+          />
 
           <p className="profile__about" id="profile-about">
             {about}
@@ -56,7 +55,7 @@ function Main({
           type="button"
           className="button profile__button-add"
           id="add-place-open-button"
-        ></button>
+        />
       </section>
       <section className="cards">
         <ul className="cards__list">

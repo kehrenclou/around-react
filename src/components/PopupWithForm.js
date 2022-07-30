@@ -25,7 +25,7 @@ function PopupWithForm({
         type="button"
         className="button modal__button-close"
         id={`${name}-close-button`}
-      ></button>
+      />
       <h2 className="modal__title">{title}</h2>
       <form
         className={`modal__form modal__form_type_${name}`}

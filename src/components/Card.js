@@ -1,5 +1,5 @@
 /* --------------------------------- imports -------------------------------- */
-import React from "react";
+import React, { useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 /* ------------------------------ function Card ----------------------------- */
@@ -25,7 +25,7 @@ export default function Card({
     onCardDelete(card);
   }
 
-  const currentUser = React.useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
 
   const isOwn = card.owner._id === currentUser._id;
   const isLiked = card.likes.some((user) => user._id === currentUser._id);
@@ -46,7 +46,7 @@ export default function Card({
         type="button"
         className={cardDeleteButtonClassName}
         id="place-delete-button"
-      ></button>
+      />
       <img
         onClick={handleCardClick}
         src={link}
@@ -65,7 +65,7 @@ export default function Card({
             className={cardLikeButtonClassName}
             onClick={handleLikeClick}
             id="place-like-button"
-          ></button>
+          />
           <p className="cards__like-count">{likeCount}</p>
         </div>
       </div>

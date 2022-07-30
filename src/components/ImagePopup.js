@@ -22,7 +22,7 @@ function ImagePopup({ card, onClose }) {
           type="button"
           className="button modal__button-close"
           id="modal-image-close-button"
-        ></button>
+        />
         <img src={card?.link} alt={card?.name} className="modal__image" />
         <p className="modal__caption">{card?.name}</p>
       </div>

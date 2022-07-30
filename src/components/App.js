@@ -211,7 +211,7 @@ function App() {
             cards={cards}
             onCardLike={handleCardLike}
             onCardDelete={handleCardDelete}
-          ></Main>
+          />
           <Footer />
 
           <EditAvatarPopup
@@ -241,7 +241,7 @@ function App() {
             onAddPlaceSubmit={handleAddPlaceSubmit}
             isLoading={isLoading}
           />
-          <ImagePopup card={selectedCard} onClose={closeAllPopups}></ImagePopup>
+          <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         </CurrentUserContext.Provider>
       </div>
     </div>
