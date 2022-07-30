@@ -1,9 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 
 function ImagePopup({ card, onClose }) {
-  const imageRef = useRef();
-  function handleOutsideClick(e) {
-    if (card && imageRef.current === e.target) {
+  function handleOutsideClick(event) {
+    if (card && event.target === event.currentTarget) {
       onClose();
     }
   }
