@@ -1,5 +1,5 @@
 /* --------------------------------- imports -------------------------------- */
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import api from "../utils/api";
 import Header from "./Header";
 import Main from "./Main";
@@ -70,12 +70,6 @@ function App() {
     setIsConfirmDeletePopoupOpen(false);
     setSelectedCard(null);
   }
-
-  const handleEscClose = useCallback((event) => {
-    if (event.key === "Escape") {
-      closeAllPopups();
-    }
-  }, []);
 
   /* --------------------------- handlers with apis --------------------------- */
 
@@ -191,11 +185,17 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const handleEscClose = (event) => {
+      if (event.key === "Escape") {
+        closeAllPopups();
+      }
+    };
+
     document.addEventListener("keydown", handleEscClose, false);
     return () => {
       document.removeEventListener("keydown", handleEscClose, false);
     };
-  }, [handleEscClose]);
+  }, []);
 
   /* --------------------------------- return --------------------------------- */
   return (
