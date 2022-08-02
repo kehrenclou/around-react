@@ -33,7 +33,6 @@ Edit - refactored code to implement React
 
 ## Link to Github Project
 
-https://kehrenclou.github.io/web_project_4/ - pre REACT
 https://kehrenclou.github.io/around-react/ - post REACT
 
 ## Plan on improving project
